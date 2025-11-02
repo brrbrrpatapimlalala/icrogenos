@@ -2,6 +2,7 @@
 import time
 import pygame
 import subprocess
+import requests
 
 def disk():
     with open("SYS/DISK_INFO.TXT", "w") as f:
@@ -34,7 +35,7 @@ def main():
     print("Welcome to IcroShell")
     pygame.mixer.music.load("SYS/icrogenos_startup_sound.mp3")
     pygame.mixer.music.play()
-    cv = "0.0.3"
+    cv = "0.0.4"
     while True:
         pygame.display.flip()
         com = input("> ").split()
@@ -42,22 +43,12 @@ def main():
             pass
         elif com[0] == "help":
             print("help       System Commands")
-            print("poiu       Panel Of Icrogen Updates")
             print("echo       Output text in console")
             print("cls        Clear Console")
             print("icroplay   Music Player for IcrogenOS")
             print("laf        List All Files")
-            print("icrofetch    System Information")
+            print("icrofetch  System Information")
             print("shutdown   Shutdown OS")
-        elif com[0] == "poiu":
-            print("\033[H\033[2J", end="\r")
-            print("Welcome to POIU (Panel Of Icrogen Updates)")
-            print("Checking for updates...")
-            time.sleep(2)
-            if cv == "0.0.3":
-                print("You have latest update.")
-            else:
-                print("Updating your system")
         elif com[0] == "echo":
             print(f"{' '.join(com[1:])}")
         elif com[0] == "cls":
@@ -99,6 +90,7 @@ def main():
             print("Developer: Luxidev")
             print("Release date: 02.11.2025")
             print("Release date of first version: 01.11.2025")
+            print(f"Current version: {cv}")
         elif com[0] == "shutdown":
             print("\033[H\033[2J", end="\r")
             print("Shutdown...")

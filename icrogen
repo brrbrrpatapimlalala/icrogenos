@@ -114,12 +114,16 @@ def main():
             print("Release date: 02.11.2025")
             print("Release date of first version: 01.11.2025")
             print(f"Current version: {cv}")
+            print("RAM: 1MB")
+            print("Memory: 2MB")
+            print(f"Username: {usr}")
+            print(f"Password: {pss}")
         elif com[0] == "syserr":
             syserr("SYSERR_TEST")
         elif com[0] == "calc":
             print("Welcome to Calculator 0.1")
-            n1 = input("Enter first number: ")
-            n2 = input("Enter second number: ")
+            n1 = float(input("Enter first number: "))
+            n2 = float(input("Enter second number: "))
             oper = input("Enter operation (+,-,*,/): ")
             if oper == "+":
                 print(n1 + n2)

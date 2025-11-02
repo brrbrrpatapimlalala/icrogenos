@@ -47,7 +47,7 @@ def main():
             print("cls        Clear Console")
             print("icroplay   Music Player for IcrogenOS")
             print("laf        List All Files")
-            print("sysinfo    System Information")
+            print("icrofetch    System Information")
             print("shutdown   Shutdown OS")
         elif com[0] == "poiu":
             print("\033[H\033[2J", end="\r")

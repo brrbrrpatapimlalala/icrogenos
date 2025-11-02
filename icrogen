@@ -8,6 +8,27 @@ def disk():
     with open("SYS/DISK_INFO.TXT", "w") as f:
         f.write("!DISK!0   IcrogenOS   2MB")
 
+def pchar(msg):
+    for i in msg:
+        print(end=i, flush=True)
+        time.sleep(0.01)
+
+def syserr(code):
+    pygame.mixer.music.stop()
+    print("\033[H\033[2J")
+    pchar("      /\n")
+    pchar(".    /\n")
+    pchar("    /\n")
+    pchar("   /\n")
+    pchar("   \\\n")
+    pchar(".   \\\n")
+    pchar("     \\\n")
+    pchar("      \\\n")
+    pchar("\nFailed to continue work of IcrogenOS\n")
+    pchar(f"Error code: {code}\n")
+    time.sleep(5)
+    exit()
+
 def main():
     pygame.mixer.init()
     pygame.font.init()
@@ -48,6 +69,8 @@ def main():
             print("icroplay   Music Player for IcrogenOS")
             print("laf        List All Files")
             print("icrofetch  System Information")
+            print("syserr     System Error")
+            print("calc       Calculator for IcrogenOS")
             print("shutdown   Shutdown OS")
         elif com[0] == "echo":
             print(f"{' '.join(com[1:])}")
@@ -91,6 +114,16 @@ def main():
             print("Release date: 02.11.2025")
             print("Release date of first version: 01.11.2025")
             print(f"Current version: {cv}")
+        elif com[0] == "syserr":
+            syserr("SYSERR_TEST")
+        elif com[0] == "calc":
+            print("Welcome to Calculator 0.1")
+            while True:
+                calc = eval(input("> "))
+                if calc == "exit":
+                    break
+                else:
+                    print(calc)
         elif com[0] == "shutdown":
             print("\033[H\033[2J", end="\r")
             print("Shutdown...")

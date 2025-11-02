@@ -1,0 +1,147 @@
+#!/usr/bin/python3
+import time
+import pygame
+import subprocess
+
+def disk():
+    with open("SYS/DISK_INFO.TXT", "w") as f:
+        f.write("!DISK!0   IcrogenOS   2MB")
+
+def main():
+    pygame.mixer.init()
+    pygame.font.init()
+    pygame.display.set_caption("Icrogen Display")
+    screen = pygame.display.set_mode([340,190])
+    time.sleep(2)
+    print("\033[H\033[2J", end="\r")
+    print("IcrogenOS starting")
+    print("1MB RAM")
+    print("Icrogen Sound Card")
+    print("2MB Memory")
+    time.sleep(5)
+    font = pygame.font.Font("SYS/ICROGENOS_FONT.TTF", 8)
+    screen.fill(0)
+    pygame.draw.rect(screen, (0,0,255), (16,16, 308,158))
+    screen.blit(font.render("Display output error", True, (255,255,255)), (80, 95))
+    pygame.display.flip()
+    print("\033[H\033[2J", end="\r")
+    print("Welcome to IcrogenOS")
+    time.sleep(1)
+    usr = input("Enter username: ")
+    pss = input("Enter password: ")
+    time.sleep(2)
+    print("\033[H\033[2J", end="\r")
+    print("Welcome to IcroShell")
+    pygame.mixer.music.load("SYS/icrogenos_startup_sound.mp3")
+    pygame.mixer.music.play()
+    cv = "0.0.3"
+    while True:
+        pygame.display.flip()
+        com = input("> ").split()
+        if not com:
+            pass
+        elif com[0] == "help":
+            print("help       System Commands")
+            print("poiu       Panel Of Icrogen Updates")
+            print("echo       Output text in console")
+            print("cls        Clear Console")
+            print("icroplay   Music Player for IcrogenOS")
+            print("laf        List All Files")
+            print("sysinfo    System Information")
+            print("shutdown   Shutdown OS")
+        elif com[0] == "poiu":
+            print("\033[H\033[2J", end="\r")
+            print("Welcome to POIU (Panel Of Icrogen Updates)")
+            print("Checking for updates...")
+            time.sleep(2)
+            if cv == "0.0.3":
+                print("You have latest update.")
+            else:
+                print("Updating your system")
+        elif com[0] == "echo":
+            print(f"{' '.join(com[1:])}")
+        elif com[0] == "cls":
+            print("\033[H\033[2J")
+        elif com[0] == "icroplay":
+            print("\033[H\033[2J", end="\r")
+            print("Welcome to IcroPlay")
+            print(" - play <sound_filename>")
+            print(" - stop")
+            print(" - pause")
+            print(" - unpause")
+            print(" - exit")
+            while True:
+                cm = input("> ").split()
+                if not cm:
+                    pass
+                elif cm[0] == "play":
+                    music = ''.join(cm[1:])
+                    pygame.mixer.music.load(music)
+                    pygame.mixer.music.play()
+                    print(f"Playing the '{music}'")
+                elif cm[0] == "stop":
+                    pygame.mixer.music.stop()
+                    print(f"Stopped the '{music}'")
+                elif cm[0] == "pause":
+                    pygame.mixer.music.pause()
+                    print(f"Paused the '{music}'")
+                elif cm[0] == "unpause":
+                    pygame.mixer.music.unpause()
+                    print(f"Unpaused the '{music}'")
+                elif cm[0] == "exit":
+                    break
+                else:
+                    print(f"Unknown command: {''.join(cm)}")
+        elif com[0] == "laf":
+            subprocess.run(["dir"])
+        elif com[0] == "icrofetch":
+            print("OS Name: IcrogenOS")
+            print("Developer: Luxidev")
+            print("Release date: 02.11.2025")
+            print("Release date of first version: 01.11.2025")
+        elif com[0] == "shutdown":
+            print("\033[H\033[2J", end="\r")
+            print("Shutdown...")
+            pygame.mixer.music.load("SYS/icrogenos_shutdown_sound.mp3")
+            pygame.mixer.music.play()
+            time.sleep(11)
+            exit()
+        else:
+            print(f"Unknown command: {''.join(com)}")
+
+def recovery():
+    print("\033[H\033[2J", end="\r")
+    print("IcrogenOS Recovery Mode starting")
+    print("1MB RAM")
+    print("2MB Memory")
+    time.sleep(5)
+    print("\033[H\033[2J", end="\r")
+    print("1 > Power Off")
+    print("2 > Check disks")
+    option = input(">> ")
+    if option == "1":
+        exit()
+    elif option == "2":
+        with open("SYS/DISK_INFO.TXT", "r") as f:
+            print(f.read())
+    else:
+        print("Invalid option. Shutdown.")
+
+def bm():
+    print("\033[H\033[2J")
+    print("IcroBoot 0.0.1")
+    print(" - IcrogenOS >>> 1")
+    print(" - IcrogenOS Recovery Mode >>> 2")
+    print(" - Power Off >>> 3\n")
+    option = input(">> ")
+    if option == "1":
+        main()
+    elif option == "2":
+        recovery()
+    elif option == "3":
+        exit()
+    else:
+        print("Invalid option.")
+
+disk()
+bm()

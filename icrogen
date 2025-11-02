@@ -118,12 +118,19 @@ def main():
             syserr("SYSERR_TEST")
         elif com[0] == "calc":
             print("Welcome to Calculator 0.1")
-            while True:
-                calc = eval(input("> "))
-                if calc == "exit":
-                    break
-                else:
-                    print(calc)
+            n1 = input("Enter first number: ")
+            n2 = input("Enter second number: ")
+            oper = input("Enter operation (+,-,*,/): ")
+            if oper == "+":
+                print(n1 + n2)
+            elif oper == "-":
+                print(n1 - n2)
+            elif oper == "*":
+                print(n1 * n2)
+            elif oper == "/":
+                print(n1 / n2)
+            else:
+                print("Invalid option.")
         elif com[0] == "shutdown":
             print("\033[H\033[2J", end="\r")
             print("Shutdown...")

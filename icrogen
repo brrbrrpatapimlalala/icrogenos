@@ -63,9 +63,6 @@ def first_startup():
 
 def main():
     pygame.mixer.init()
-    pygame.font.init()
-    pygame.display.set_caption("Icrogen Display")
-    screen = pygame.display.set_mode([340,190])
     time.sleep(2)
     print("\033[H\033[2J", end="\r")
     print("IcrogenOS starting")
@@ -73,11 +70,6 @@ def main():
     print("Icrogen Sound Card")
     print("16MB Memory")
     time.sleep(5)
-    font = pygame.font.Font("SYS/ICROGENOS_FONT.TTF", 8)
-    screen.fill(0)
-    pygame.draw.rect(screen, (0,0,255), (16,16, 308,158))
-    screen.blit(font.render("Display output error", True, (255,255,255)), (80, 95))
-    pygame.display.flip()
     print("\033[H\033[2J", end="\r")
     if os.path.exists("SYS/CHECK.TXT"):
         pass

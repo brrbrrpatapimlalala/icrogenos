@@ -3,6 +3,7 @@ import time
 import pygame
 import subprocess
 import requests
+import os
 
 def disk():
     with open("SYS/DISK_INFO.TXT", "w") as f:
@@ -29,6 +30,37 @@ def syserr(code):
     time.sleep(5)
     exit()
 
+def first_startup():
+    with open("SYS/CHECK.TXT", "w") as fw:
+        fw.write("y")
+    pygame.mixer.init()
+    pygame.mixer.music.load("SYS/icrogen_first_startup_music.mp3")
+    pygame.mixer.music.play()
+    print("Welcome to IcrogenOS 0.0.5")
+    print("Made by Luxidev")
+    time.sleep(2)
+    print("\033[H\033[2J")
+    time.sleep(1)
+    print("This menu help you install all for your IcrogenOS!")
+    time.sleep(2)
+    print("\033[H\033[2J")
+    print("1. Let's set new account for you")
+    name = input("Enter your new username: ")
+    ps = input("Enter your new password: ")
+    with open("SYS/USERNAME.TXT", "w") as f:
+        f.write(name)
+    with open("SYS/PASSWORD.TXT", "w") as f:
+        f.write(ps)
+    input("Press enter to continue...")
+    print("\033[H\033[2J")
+    print("Shutting down. After shutting down power on again your computer.")
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load("SYS/icrogenos_shutdown_sound.mp3")
+    pygame.mixer.music.play()
+    time.sleep(11)
+    print("\033[H\033[2J")
+    exit()
+
 def main():
     pygame.mixer.init()
     pygame.font.init()
@@ -37,9 +69,9 @@ def main():
     time.sleep(2)
     print("\033[H\033[2J", end="\r")
     print("IcrogenOS starting")
-    print("1MB RAM")
+    print("4MB RAM")
     print("Icrogen Sound Card")
-    print("2MB Memory")
+    print("16MB Memory")
     time.sleep(5)
     font = pygame.font.Font("SYS/ICROGENOS_FONT.TTF", 8)
     screen.fill(0)
@@ -47,16 +79,32 @@ def main():
     screen.blit(font.render("Display output error", True, (255,255,255)), (80, 95))
     pygame.display.flip()
     print("\033[H\033[2J", end="\r")
+    if os.path.exists("SYS/CHECK.TXT"):
+        pass
+    else:
+        first_startup()
     print("Welcome to IcrogenOS")
     time.sleep(1)
     usr = input("Enter username: ")
     pss = input("Enter password: ")
+    usrc = open("SYS/USERNAME.TXT", "r")
+    pssc = open("SYS/PASSWORD.TXT", "r")
+    if usrc.read() == usr:
+        pass
+    else:
+        print("Wrong username. Shutting down.")
+        exit()
+    if pssc.read() == pss:
+        pass
+    else:
+        print("Wrong password. Shutting down.")
+        exit()
     time.sleep(2)
     print("\033[H\033[2J", end="\r")
     print("Welcome to IcroShell")
     pygame.mixer.music.load("SYS/icrogenos_startup_sound.mp3")
     pygame.mixer.music.play()
-    cv = "0.0.4"
+    cv = "0.0.5"
     while True:
         pygame.display.flip()
         com = input("> ").split()
@@ -71,6 +119,7 @@ def main():
             print("icrofetch  System Information")
             print("syserr     System Error")
             print("calc       Calculator for IcrogenOS")
+            print("log        Update Log")
             print("shutdown   Shutdown OS")
         elif com[0] == "echo":
             print(f"{' '.join(com[1:])}")
@@ -111,11 +160,11 @@ def main():
         elif com[0] == "icrofetch":
             print("OS Name: IcrogenOS")
             print("Developer: Luxidev")
-            print("Release date: 02.11.2025")
+            print("Release date: 05.11.2025")
             print("Release date of first version: 01.11.2025")
             print(f"Current version: {cv}")
-            print("RAM: 1MB")
-            print("Memory: 2MB")
+            print("RAM: 4MB")
+            print("Memory: 16MB")
             print(f"Username: {usr}")
             print(f"Password: {pss}")
         elif com[0] == "syserr":
@@ -142,6 +191,9 @@ def main():
             pygame.mixer.music.play()
             time.sleep(11)
             exit()
+        elif com[0] == "log":
+            with open("SYS/UPDATE_LOG.TXT", "r") as f:
+                print(f.read())
         else:
             print(f"Unknown command: {''.join(com)}")
 
@@ -181,3 +233,4 @@ def bm():
 
 disk()
 bm()
+first_startup()

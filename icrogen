@@ -31,6 +31,13 @@ def syserr(code):
     exit()
 
 def first_startup():
+    print("Installing all programs...")
+    time.sleep(20)
+    print("Checking...")
+    time.sleep(10)
+    print("IcrogenOS Successfully installed on your computer.")
+    time.sleep(2)
+    print("\033[H\033[2J")
     with open("SYS/CHECK.TXT", "w") as fw:
         fw.write("y")
     pygame.mixer.init()
@@ -96,7 +103,7 @@ def main():
     print("Welcome to IcroShell")
     pygame.mixer.music.load("SYS/icrogenos_startup_sound.mp3")
     pygame.mixer.music.play()
-    cv = "0.0.5"
+    cv = "0.0.6"
     while True:
         com = input("> ").split()
         if not com:

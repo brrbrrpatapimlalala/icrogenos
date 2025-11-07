@@ -1,12 +1,25 @@
 RU:
 
+0.0.6
+
 1. Если вы не создали аккаунт или файла SYS/CHECK.TXT не существует то система запустится в первом режиме запуска (First Startup), настройка (маленькая)
 2. Добавил при первом запуске создание аккаунта в икрогенос, потом после стартапа оно читает с файла SYS/USERNAME.TXT и SYS/PASSWORD.TXT 1 никнейм, 2 пароль
 3. Музыка при первом стартапе
 4. Добавил больше оперативной памяти и памяти
+5. Удален дисплей
+
+0.0.7
+Изменена музыка запуска
 
 EN:
+
+0.0.6
+
 1. If you haven’t created an account or the file SYS/CHECK.TXT doesn’t exist, the system will start in (First Startup) mode (initial setup, small configuration).
 2. Added account creation in IcrogenOS during the first startup; after startup, it reads the username and password from the files SYS/USERNAME.TXT and SYS/PASSWORD.TXT — the first is the username, the second is the password.
 3. Music plays during the first startup.
 4. Added more RAM and storage memory.
+5. Deleted display
+
+0.0.7
+Changed music in startup

@@ -11,6 +11,9 @@ RU:
 0.0.7
 Изменена музыка запуска
 
+0.0.8
+Изменена музыка выключения
+
 EN:
 
 0.0.6
@@ -23,3 +26,6 @@ EN:
 
 0.0.7
 Changed music in startup
+
+0.0.8
+Changed music in shutdown

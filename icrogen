@@ -7,7 +7,7 @@ import os
 
 def disk():
     with open("SYS/DISK_INFO.TXT", "w") as f:
-        f.write("!DISK!0   IcrogenOS   2MB")
+        f.write("!DISK!0   IcrogenOS   32MB")
 
 def pchar(msg):
     for i in msg:
@@ -43,7 +43,7 @@ def first_startup():
     pygame.mixer.init()
     pygame.mixer.music.load("SYS/icrogen_first_startup_music.mp3")
     pygame.mixer.music.play()
-    print("Welcome to IcrogenOS 0.0.5")
+    print("Welcome to IcrogenOS 0.0.7")
     print("Made by Luxidev")
     time.sleep(2)
     print("\033[H\033[2J")
@@ -103,7 +103,7 @@ def main():
     print("Welcome to IcroShell")
     pygame.mixer.music.load("SYS/icrogenos_startup_sound.mp3")
     pygame.mixer.music.play()
-    cv = "0.0.6"
+    cv = "0.0.7"
     while True:
         com = input("> ").split()
         if not com:
@@ -161,8 +161,8 @@ def main():
             print("Release date: 05.11.2025")
             print("Release date of first version: 01.11.2025")
             print(f"Current version: {cv}")
-            print("RAM: 4MB")
-            print("Memory: 16MB")
+            print("RAM: 16MB")
+            print("Memory: 32MB")
             print(f"Username: {usr}")
             print(f"Password: {pss}")
         elif com[0] == "syserr":
@@ -187,7 +187,7 @@ def main():
             print("Shutdown...")
             pygame.mixer.music.load("SYS/icrogenos_shutdown_sound.mp3")
             pygame.mixer.music.play()
-            time.sleep(11)
+            time.sleep(13)
             exit()
         elif com[0] == "log":
             with open("SYS/UPDATE_LOG.TXT", "r") as f:
